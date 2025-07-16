@@ -48,3 +48,18 @@ html, body, #root {
 .text {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+
+.link {
+  text-decoration: none;
+  color: hsl(211, 100%, 55%);
+  font-weight: 900;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block; /* Ensure the link behaves like a block element */
+  cursor: pointer;
+}
+
+.link:hover {
+  color: #0065d1;
+  transform: scale(1.02); /* Slight zoom effect (adjust the scale as needed) */
+}
