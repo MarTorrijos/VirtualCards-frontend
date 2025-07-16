@@ -14,12 +14,12 @@ html, body, #root {
 /* Card styles */
 .card {
   position: relative;
-  width: 250px;
+
   height: 375px;
   background-size: cover;
   background-position: center;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  border-radius: 1rem;
+
   overflow: hidden;
 }
 
@@ -43,4 +43,8 @@ html, body, #root {
   color: white;
   font-weight: 500;
   text-shadow: 1px 1px 2px black;
+}
+
+.text {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

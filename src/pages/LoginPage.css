@@ -1,9 +1,11 @@
 .centered {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   background-color: #A5D7EF;
+  overflow: hidden;
 }
 
 /* Wrapper for logo and card */
@@ -12,33 +14,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 }
 
 /* Logo outside the card */
 .login-logo-outside {
-  position: relative;
   max-width: 400px;
   height: auto;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(10px 10px 0px rgb(107, 177, 224));
+}
+.login-logo-outside:hover {
+  transform: scale(1.05);
+  transition: transform 0.1s ease;
 }
 
 /* Card-style login box */
 .login-card {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 1rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 10px 0px rgb(107, 177, 224);
   padding: 2rem;
   max-width: 24rem;
   width: 100%;
   transition: transform 0.3s ease;
-}
-
-.login-title {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900;
-  font-size: 1.7rem;
-  text-align: center;
-  color: #1f2937;
 }
 
 .input {
@@ -50,15 +48,19 @@
   font-size: 1rem;
   box-sizing: border-box;
 }
+.input:hover {
+    background-color: rgb(2, 125, 182);
+}
 
 .button {
   font-family: 'Nunito', sans-serif;
-  font-weight: 600;
+  font-weight: 900;
   font-size: 1rem;
   background-color: #20a9e9;
   color: white;
   width: 100%;
   padding: 0.75rem;
+  margin-bottom: 1.5rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -67,7 +69,8 @@
 
 .button:hover {
   background-color: rgb(2, 125, 182);
-  transform: translateY(1px);
+  transform: scale(1.03);
+  transition: transform 0.1s ease;
 }
 
 .login-bg-bottom {
@@ -75,9 +78,9 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  max-height: 200px;
+  max-height: 300px;
   object-fit: cover;
-  pointer-events: none;
   z-index: 0;
+  opacity: 0.8;
+  pointer-events: none;
 }

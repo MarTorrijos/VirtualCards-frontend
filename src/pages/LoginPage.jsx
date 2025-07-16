@@ -23,10 +23,13 @@ export default function LoginPage() {
 
   return (
     <div className="centered">
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="login-wrapper">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="login-wrapper"
+      >
         <img src={logo} alt="Virtual Cards Logo" className="login-logo-outside" />
         <div className="login-card">
-          <h2 className="login-title">Login</h2>
           <input
             type="text"
             placeholder="Username"
@@ -34,6 +37,7 @@ export default function LoginPage() {
             onChange={(e) => setUsername(e.target.value)}
             className="input"
           />
+
           <input
             type="password"
             placeholder="Password"
@@ -41,12 +45,19 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             className="input"
           />
+
           <button onClick={handleLogin} className="button">
             Sign In
           </button>
+
+          {/* NEEDS FIXING*/}
+          <p className="text">
+          Don’t have an account? <span className="link" onClick={() => navigate('/register')}>Register instead</span>
+          </p>
         </div>
       </motion.div>
 
+      {/* Background image below the login box */}
       <img src={loginBackground} alt="Login Page Decoration" className="login-bg-bottom" />
     </div>
   );
