@@ -1,0 +1,62 @@
+/* Centered container for login form */
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* Card-style login box */
+.login-card {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+  max-width: 24rem;
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Title styling */
+.login-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 1.7rem;
+  text-align: center;
+  color: #1f2937;
+}
+
+/* Inputs */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Button */
+.button {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600; /* Regular */
+  font-size: 1rem;
+  background-color: #3b82f6;
+  color: white;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #2563eb; /* blue-600 */
+}
