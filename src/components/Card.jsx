@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Card({ card }) {
   const getImagePath = () => {
-    const type = card.type.toLowerCase(); // rock, paper, scissors
+    const type = card.type.toLowerCase();
     const stage = card.evolutionStage;
     return new URL(`../assets/cards/${type}_evo_${stage}.png`, import.meta.url).href;
   };
@@ -11,14 +11,11 @@ export default function Card({ card }) {
   return (
     <motion.div
       className="card"
+      whileHover={{ scale: 1.1 }}
+      transition={{ duration: 0 }}
       style={{ backgroundImage: `url(${getImagePath()})` }}
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
     >
-      <div className="card-header">
-        {card.name} — {card.type}
-      </div>
+      <div className="card-header">{card.name} — {card.type}</div>
       <div className="card-footer">
         <div>HP: {card.currentHealth} / {card.maxHealth}</div>
         <div>Attack: {card.attack}</div>

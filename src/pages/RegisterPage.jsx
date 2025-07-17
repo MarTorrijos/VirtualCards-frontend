@@ -55,10 +55,11 @@ export default function RegisterPage() {
 
       <div className="centered">
         <div className="login-wrapper">
-          <img
+          <motion.img
             src={logo}
             alt="Virtual Cards Logo"
             className="login-logo-outside"
+            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
           />
 
           <motion.div
