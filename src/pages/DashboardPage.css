@@ -1,19 +1,20 @@
 .page {
   min-height: 100vh;
   padding: 0;
-  background-color: #A5D7EF;
 }
 
 .dashboard-header {
+    position: relative; /* Ensure it creates a new stacking context */
+  z-index: 10;         /* Higher than the default content */
   font-family: 'Nunito', sans-serif;
   font-weight: 900;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
-  background-color: #ffffff;
-  padding: 0.5rem 3.5rem;
-    box-shadow: 0px 10px 0px rgb(107, 177, 224);
+  margin-bottom: 3.2rem;
+  background-color: #fff;
+  padding: 0.3rem 7rem;
+  box-shadow: 0px 10px 0px rgb(107, 177, 224);
 }
 
 .dashboard-left {
@@ -23,47 +24,108 @@
 }
 
 .dashboard-logo {
-  height: 100px;
+  height: 90px;
   margin-right: 2rem;
-  width: auto;
 }
 
-.dashboard-actions {
+.dashboard-right {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.logout-button,
-.profile-link {
-  background-color: #ef4444;
-  color: white;
-  padding: 1rem 2.5rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 0.5rem;
+.hamburger-menu {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.hamburger-icon {
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   cursor: pointer;
 }
 
-.profile-link {
-  background-color: #3b82f6;
+.hamburger-icon span {
+  display: block;
+  height: 3px;
+  background: #333;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 22;
 }
 
-.profile-link:hover {
-  background-color: #2563eb;
+.hamburger-icon.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
 }
 
-.logout-button:hover {
-  background-color: #dc2626;
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 43px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 2.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5rem;
+  color: #000000;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #fff4de;
+}
+
+.main-content {
+  margin: 0 6rem;
 }
 
 .grid-cards {
   display: grid;
-  margin-left: 3rem;
-    margin-right: 3rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 2rem;
 }
 
+/* Action buttons in header */
+.action-button {
+  background-color: #20a9e9;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 6rem;
+  font-weight: bold;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+  background-color: rgb(2, 125, 182);
+}
+
+/* Card styles */
 .card {
   position: relative;
   width: 250px;
@@ -77,8 +139,8 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 0.5rem;
-  box-shadow: none;
   filter: drop-shadow(10px 10px 0px rgb(107, 177, 224));
+  cursor: pointer;
 }
 
 .card-header {
@@ -103,4 +165,3 @@
   bottom: 2rem;
   font-size: 0.875rem;
 }
-
