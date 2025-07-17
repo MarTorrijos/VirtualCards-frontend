@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
+import logo from '../assets/Logo.png';
 import './DashboardPage.css';
 
 export default function DashboardPage() {
@@ -15,7 +16,6 @@ export default function DashboardPage() {
   };
 
   useEffect(() => {
-    // Replace this with your actual backend fetch
     fetch('http://localhost:8080/cards', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -30,17 +30,32 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className="page">
-      <div className="dashboard-header">
-        <h1>Your Cards</h1>
-        <button onClick={handleLogout} className="logout-button">Logout</button>
-      </div>
+    <>
+      <div className="bg-bottom-left" />
+      <div className="bg-bottom-right" />
 
-      <div className="grid-cards">
-        {cards.map((card) => (
-          <Card key={card.id} card={card} />
-        ))}
+      <div className="page">
+        <div className="dashboard-header">
+          <div className="dashboard-left">
+            <img src={logo} alt="Virtual Cards Logo" className="dashboard-logo" />
+            <h1>Your Cards</h1>
+          </div>
+          <div className="dashboard-actions">
+            <button onClick={() => navigate('/profile')} className="profile-link">
+              Profile
+            </button>
+            <button onClick={handleLogout} className="logout-button">
+              Logout
+            </button>
+          </div>
+        </div>
+
+        <div className="grid-cards">
+          {cards.map((card) => (
+            <Card key={card.id} card={card} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
