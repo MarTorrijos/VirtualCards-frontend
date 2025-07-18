@@ -1,5 +1,3 @@
-/* Only page-level styles—not touching bg-bottom-*</code> */
-
 .card-view-page {
   position: relative;
   min-height: 100vh;
@@ -10,6 +8,14 @@
   font-family: 'Nunito', sans-serif;
   color: white;
   z-index: 100;
+}
+
+.background-darken-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* <-- dark overlay */
+  z-index: 50;
+  pointer-events: none;
 }
 
 .back-button {
@@ -42,10 +48,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  filter: drop-shadow(12px 12px 0px rgb(107, 177, 224));
+  filter: drop-shadow(12px 12px 0px rgb(27, 67, 94));
   border-radius: 1rem;
   overflow: hidden;
   padding: 1rem;
+  z-index: 101;
 }
 
 .card-large .card-header {

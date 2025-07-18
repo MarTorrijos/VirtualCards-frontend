@@ -8,7 +8,9 @@ export default function Card({ card, clickable = false }) {
   const getImagePath = () => {
     const type = card.type.toLowerCase();
     const stage = card.evolutionStage;
-    return new URL(`../assets/cards/${type}_evo_${stage}.png`, import.meta.url).href;
+    const path = `/assets/cards/${type}_evo_${stage}.png`;
+    console.log('Dashboard card image:', path); // ADD THIS
+    return path;
   };
 
   const handleClick = () => {

@@ -3,7 +3,6 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Card from '../components/Card';
-import logo from '../assets/Logo.png';
 import './DashboardPage.css';
 
 export default function DashboardPage() {
@@ -11,6 +10,7 @@ export default function DashboardPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const logo = '/assets/Logo.png';
 
   useEffect(() => {
     fetch('http://localhost:8080/cards', {
