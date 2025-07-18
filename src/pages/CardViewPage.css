@@ -37,38 +37,3 @@
   background-color: #0a79b2;
   transform: scale(1.05);
 }
-
-.card-large {
-  width: 400px;
-  height: 600px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  filter: drop-shadow(12px 12px 0px rgb(27, 67, 94));
-  border-radius: 1rem;
-  overflow: hidden;
-  padding: 1rem;
-  z-index: 101;
-}
-
-.card-large .card-header {
-  font-size: 2rem;
-  font-weight: 900;
-  text-align: center;
-  margin-top: 1rem;
-  color: black;
-  text-shadow: 1px 1px 2px white;
-}
-
-.card-large .card-footer {
-  font-size: 1.25rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: black;
-  text-shadow: 1px 1px 2px white;
-}

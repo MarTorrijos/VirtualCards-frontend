@@ -1,0 +1,49 @@
+.card {
+  position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 1rem;
+  filter: drop-shadow(10px 10px 0px rgb(81, 173, 235));
+}
+
+.card.clickable {
+  cursor: pointer;
+}
+
+.card.small {
+  width: 250px;
+  height: 375px;
+}
+
+.card.large {
+  width: 400px;
+  height: 600px;
+}
+
+.card-header {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 900;
+  text-align: center;
+  color: black;
+  text-shadow: 1px 1px 2px white;
+  font-size: 1.25rem;
+  z-index: 2;
+}
+
+.card-footer {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 900;
+  text-align: center;
+  color: black;
+  text-shadow: 1px 1px 2px white;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  z-index: 2;
+}

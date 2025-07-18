@@ -70,7 +70,7 @@ export default function DashboardPage() {
           <div className="grid-cards">
             {cards.map((card, index) => (
               <motion.div key={card.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: index * 0.07 }}>
-                <Card card={card} clickable />
+                <Card card={card} clickable size="small" />
               </motion.div>
             ))}
           </div>

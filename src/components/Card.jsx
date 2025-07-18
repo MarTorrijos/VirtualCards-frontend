@@ -1,41 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import './Card.css';
 
-export default function Card({ card, clickable = false }) {
+export default function Card({ card, clickable = false, size = 'small' }) {
   const navigate = useNavigate();
 
   const getImagePath = () => {
     const type = card.type.toLowerCase();
     const stage = card.evolutionStage;
-    const path = `/assets/cards/${type}_evo_${stage}.png`;
-    console.log('Dashboard card image:', path); // ADD THIS
-    return path;
+    return `/assets/cards/${type}_evo_${stage}.png`;
   };
 
   const handleClick = () => {
-    if (clickable) {
-      navigate(`/cards/${card.id}`);
-    }
+    if (clickable) navigate(`/cards/${card.id}`);
   };
 
   return (
     <motion.div
-      className="card"
+      className={`card ${clickable ? 'clickable' : ''} ${size}`}
       whileHover={clickable ? { scale: 1.1 } : {}}
       transition={{ duration: 0 }}
       onClick={handleClick}
-      style={{
-        backgroundImage: `url(${getImagePath()})`,
-        cursor: clickable ? 'pointer' : 'default',
-      }}
+      style={{ backgroundImage: `url(${getImagePath()})` }}
     >
       <div className="card-header">{card.name} — {card.type}</div>
       <div className="card-footer">
-        <div>HP: {card.currentHealth} / {card.maxHealth}</div>
-        <div>Attack: {card.attack}</div>
-        <div>XP: {card.xp}</div>
-        <div>Stage: {card.evolutionStage}</div>
+        HP: {card.currentHealth} / {card.maxHealth}<br />
+        ATK: {card.attack}<br />
+        XP: {card.xp}<br />
+        Stage: {card.evolutionStage}
       </div>
     </motion.div>
   );

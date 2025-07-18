@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Card from '../components/Card';
 import './CardViewPage.css';
 
 export default function CardViewPage() {
@@ -27,21 +28,7 @@ export default function CardViewPage() {
       });
   }, [id, navigate]);
 
-  const getImagePath = () => {
-    if (!card?.type || card.evolutionStage == null) {
-      console.warn('Card data incomplete:', card);
-      return '';
-    }
-    const type = card.type.toLowerCase();
-    const path = `/assets/cards/${type}_evo_${card.evolutionStage}.png`;
-    console.log('Card image path:', path);
-    return path;
-  };
-
   if (!card) return <div>Loading...</div>;
-
-  const imagePath = getImagePath();
-  const imageAvailable = !!imagePath;
 
   return (
     <>
@@ -50,20 +37,7 @@ export default function CardViewPage() {
       <div className="bg-bottom-right" />
       <div className="card-view-page">
         <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
-        <div
-          className="card-large"
-          style={{ backgroundImage: imageAvailable ? `url(${imagePath})` : 'none' }}
-        >
-          {!imageAvailable && (
-            <div style={{ color: 'red', textAlign: 'center', marginTop: '2rem' }}>
-              Image not available
-            </div>
-          )}
-          <div className="card-header">{card.name}</div>
-          <div className="card-footer">
-            {card.type} | ATK: {card.attack} | HP: {card.currentHealth}/{card.maxHealth}
-          </div>
-        </div>
+        <Card card={card} size="large" />
       </div>
     </>
   );
