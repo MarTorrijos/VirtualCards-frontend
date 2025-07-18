@@ -126,34 +126,3 @@ html, body, #root {
   color: #0065d1;
   transform: scale(1.02);
 }
-
-/* Decorative backgrounds */
-.bg-bottom-left {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 60%;
-  height: 60%;
-  background-image: url('/assets/backgrounds/trees_left.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom left;
-  z-index: -1; /* behind content */
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.bg-bottom-right {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 60%;
-  height: 60%;
-  background-image: url('/assets/backgrounds/trees_right.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  z-index: -1; /* behind content */
-  opacity: 0.5;
-  pointer-events: none;
-}

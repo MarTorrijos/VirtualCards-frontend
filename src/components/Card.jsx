@@ -1,19 +1,32 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
-export default function Card({ card }) {
+export default function Card({ card, clickable = false }) {
+  const navigate = useNavigate();
+
   const getImagePath = () => {
     const type = card.type.toLowerCase();
     const stage = card.evolutionStage;
     return new URL(`../assets/cards/${type}_evo_${stage}.png`, import.meta.url).href;
   };
 
+  const handleClick = () => {
+    if (clickable) {
+      navigate(`/cards/${card.id}`);
+    }
+  };
+
   return (
     <motion.div
       className="card"
-      whileHover={{ scale: 1.1 }}
+      whileHover={clickable ? { scale: 1.1 } : {}}
       transition={{ duration: 0 }}
-      style={{ backgroundImage: `url(${getImagePath()})` }}
+      onClick={handleClick}
+      style={{
+        backgroundImage: `url(${getImagePath()})`,
+        cursor: clickable ? 'pointer' : 'default',
+      }}
     >
       <div className="card-header">{card.name} — {card.type}</div>
       <div className="card-footer">

@@ -1,0 +1,67 @@
+/* Only page-level styles—not touching bg-bottom-*</code> */
+
+.card-view-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  z-index: 100;
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #20a9e9;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 110;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.back-button:hover {
+  background-color: #0a79b2;
+  transform: scale(1.05);
+}
+
+.card-large {
+  width: 400px;
+  height: 600px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  filter: drop-shadow(12px 12px 0px rgb(107, 177, 224));
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.card-large .card-header {
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 1rem;
+  color: black;
+  text-shadow: 1px 1px 2px white;
+}
+
+.card-large .card-footer {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: black;
+  text-shadow: 1px 1px 2px white;
+}

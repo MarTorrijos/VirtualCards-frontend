@@ -1,61 +1,37 @@
+/* index.css */
+
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* General page layout */
 .page {
   min-height: 100vh;
   padding: 0;
   font-family: sans-serif;
 }
 
-.text {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.link {
-  text-decoration: none;
-  color: hsl(211, 100%, 55%);
-  font-weight: 900;
-  transition: color 0.3s ease, transform 0.3s ease;
-  display: inline-block; /* Ensure the link behaves like a block element */
-  cursor: pointer;
-}
-
-.link:hover {
-  color: #0065d1;
-  transform: scale(1.02); /* Slight zoom effect (adjust the scale as needed) */
-}
-
-/* Decorative backgrounds for login/register pages */
-.bg-bottom-left {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 60%;
-  height: 60%;
-  background-image: url('/assets/backgrounds/trees_left.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom left;
-  z-index: 0;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
+/* >>> BACKGROUND SETTINGS <<< */
+.bg-bottom-left,
 .bg-bottom-right {
   position: fixed;
   bottom: 0;
-  right: 0;
   width: 60%;
   height: 60%;
-  background-image: url('/assets/backgrounds/trees_right.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: bottom right;
-  z-index: 0;
   opacity: 0.5;
   pointer-events: none;
+  z-index: 0;
+}
+.bg-bottom-left {
+  left: 0;
+  background-image: url('/assets/backgrounds/trees_left.png');
+  background-position: bottom left;
+}
+.bg-bottom-right {
+  right: 0;
+  background-image: url('/assets/backgrounds/trees_right.png');
+  background-position: bottom right;
 }

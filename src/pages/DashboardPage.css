@@ -4,7 +4,7 @@
 }
 
 .dashboard-header {
-    position: relative; /* Ensure it creates a new stacking context */
+  position: relative;
   z-index: 10;         /* Higher than the default content */
   font-family: 'Nunito', sans-serif;
   font-weight: 900;

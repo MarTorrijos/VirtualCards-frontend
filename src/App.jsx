@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import CardViewPage from './pages/CardViewPage';
 import './App.css';
 
 export default function App() {
@@ -23,6 +24,8 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/cards/:id" element={<CardViewPage />} />
+          
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Router>

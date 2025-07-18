@@ -33,49 +33,50 @@ export default function LoginPage() {
     <>
       <div className="bg-bottom-left" />
       <div className="bg-bottom-right" />
-
-      <div className="centered">
-        <div className="login-wrapper">
-          <motion.img
-            src={logo}
-            alt="Virtual Cards Logo"
-            className="login-logo-outside"
-            initial={firstVisit ? { opacity: 0, scale: 0.9 } : false}
-            animate={firstVisit ? { opacity: 1, scale: 1 } : false}
-            transition={firstVisit ? { duration: 0.2 } : {}}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-          />
-
-          <motion.div
-            className="login-card"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="input"
+      <div className="page">
+        <div className="centered">
+          <div className="login-wrapper">
+            <motion.img
+              src={logo}
+              alt="Virtual Cards Logo"
+              className="login-logo-outside"
+              initial={firstVisit ? { opacity: 0, scale: 0.9 } : false}
+              animate={firstVisit ? { opacity: 1, scale: 1 } : false}
+              transition={firstVisit ? { duration: 0.2 } : {}}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input"
-            />
-            <button onClick={handleLogin} className="button">
-              Sign In
-            </button>
-            <p className="text">
-              Don’t have an account? <br />
-              <span className="link" onClick={() => navigate('/register')}>
-                Register instead
-              </span>
-            </p>
-          </motion.div>
+
+            <motion.div
+              className="login-card"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="input"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input"
+              />
+              <button onClick={handleLogin} className="button">
+                Sign In
+              </button>
+              <p className="text">
+                Don’t have an account? <br />
+                <span className="link" onClick={() => navigate('/register')}>
+                  Register instead
+                </span>
+              </p>
+            </motion.div>
+          </div>
         </div>
       </div>
     </>

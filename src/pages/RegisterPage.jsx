@@ -50,9 +50,9 @@ export default function RegisterPage() {
 
   return (
     <>
-      <div className="bg-bottom-left" />
+          <div className="bg-bottom-left" />
       <div className="bg-bottom-right" />
-
+      <div className="page">
       <div className="centered">
         <div className="login-wrapper">
           <motion.img
@@ -100,6 +100,7 @@ export default function RegisterPage() {
             </p>
           </motion.div>
         </div>
+      </div>
       </div>
     </>
   );
