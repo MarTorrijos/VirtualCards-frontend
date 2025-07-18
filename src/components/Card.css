@@ -10,8 +10,8 @@
   justify-content: space-between;
   padding: 1em;
   border-radius: 1em;
-  filter: drop-shadow(1em 1em 0 rgb(81, 173, 235));
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem; /* base unit for scaling */
 }
 
 .card.clickable {
@@ -21,39 +21,48 @@
 .card.small {
   width: 20em;
   height: 30em;
-  font-size: 12px; /* base font size for scaling */
+  font-size: 0.75rem;
+  filter: drop-shadow(1em 1em 0 rgb(81, 173, 235));
 }
 
 .card.large {
   width: 25em;
   height: 37.5em;
-  font-size: 16px;
+  font-size: 1rem;
+  filter: drop-shadow(1em 1em 0 rgb(27, 67, 94));
+}
+
+.card-header,
+.card-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.5em;
+  z-index: 2;
+  color: black;
+  text-shadow: 0.1em 0.1em 0.2em white;
 }
 
 .card-header {
-  font-family: 'Nunito', sans-serif;
+  top: 3%;
   font-weight: 900;
-  position: absolute;
-  top: 0.6em;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: rgb(32, 31, 31);
-  text-shadow: 0.1em 0.1em 0.2em rgb(255, 255, 255);
   font-size: 1.6em;
-  z-index: 2;
 }
 
 .card-footer {
-  font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  position: absolute;
-  bottom: 3em;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: black;
-  text-shadow: 0.1em 0.1em 0.2em white;
   font-size: 1.2em;
-  z-index: 2;
+}
+
+.card.small .card-footer {
+  bottom: 8%;
+}
+
+.card.large .card-footer {
+  bottom: 8%;
+  font-size: 1.4em;
 }
