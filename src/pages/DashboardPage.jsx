@@ -40,7 +40,14 @@ export default function DashboardPage() {
       <div className="bg-bottom-right" />
 
       <div className="page">
-        <motion.div initial={{ opacity: 0, y: -200 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+        <motion.div
+          initial={sessionStorage.getItem('dashboardVisited') ? false : { opacity: 0, y: -200 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          onAnimationComplete={() => {
+            sessionStorage.setItem('dashboardVisited', 'true');
+          }}
+        >
           <div className="dashboard-header">
             <div className="dashboard-left">
               <img src={logo} alt="Virtual Cards Logo" className="dashboard-logo" />
