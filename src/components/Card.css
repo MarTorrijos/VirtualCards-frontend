@@ -8,9 +8,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
-  border-radius: 1rem;
-  filter: drop-shadow(10px 10px 0px rgb(81, 173, 235));
+  padding: 1em;
+  border-radius: 1em;
+  filter: drop-shadow(1em 1em 0 rgb(81, 173, 235));
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .card.clickable {
@@ -18,32 +19,41 @@
 }
 
 .card.small {
-  width: 250px;
-  height: 375px;
+  width: 20em;
+  height: 30em;
+  font-size: 12px; /* base font size for scaling */
 }
 
 .card.large {
-  width: 400px;
-  height: 600px;
+  width: 25em;
+  height: 37.5em;
+  font-size: 16px;
 }
 
 .card-header {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 900;
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 100%;
   text-align: center;
-  color: black;
-  text-shadow: 1px 1px 2px white;
-  font-size: 1.25rem;
+  color: rgb(32, 31, 31);
+  text-shadow: 0.1em 0.1em 0.2em rgb(255, 255, 255);
+  font-size: 1.6em;
   z-index: 2;
 }
 
 .card-footer {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: 900;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  position: absolute;
+  bottom: 3em;
+  left: 0;
+  width: 100%;
   text-align: center;
   color: black;
-  text-shadow: 1px 1px 2px white;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  text-shadow: 0.1em 0.1em 0.2em white;
+  font-size: 1.2em;
   z-index: 2;
 }
