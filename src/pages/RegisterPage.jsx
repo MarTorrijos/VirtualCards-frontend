@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/Logo.png';
+
 import './LoginPage.css'; // Reuse login styles
 
 export default function RegisterPage() {
@@ -9,6 +9,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('');
   const [statusMessage, setStatusMessage] = useState('');
   const navigate = useNavigate();
+  const logo = '/assets/Logo.png';
 
   const handleRegister = async () => {
     try {

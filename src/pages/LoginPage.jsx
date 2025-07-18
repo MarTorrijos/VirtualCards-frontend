@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/Logo.png';
 import './LoginPage.css';
 
 export default function LoginPage() {
@@ -11,6 +10,7 @@ export default function LoginPage() {
   const [firstVisit, setFirstVisit] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const logo = '/assets/Logo.png';
 
   useEffect(() => {
     const visited = localStorage.getItem('hasVisited');
