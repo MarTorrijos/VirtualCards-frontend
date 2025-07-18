@@ -37,7 +37,15 @@ export default function CardViewPage() {
       <div className="bg-bottom-right" />
       <div className="card-view-page">
         <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
-        <Card card={card} size="large" />
+
+        <div className="card-wrapper">
+          <Card card={card} size="large" />
+          <div className="card-actions">
+            <button className="action-button">Upgrade health</button>
+            <button className="action-button">Upgrade attack</button>
+            <button className="action-button">Battle</button>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -4,16 +4,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
   font-family: 'Nunito', sans-serif;
   color: white;
   z-index: 100;
 }
 
+/* New wrapper to group the card and action buttons */
+.card-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* Right-hand button column */
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .background-darken-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* <-- dark overlay */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 50;
   pointer-events: none;
 }
@@ -36,4 +49,23 @@
 .back-button:hover {
   background-color: #0a79b2;
   transform: scale(1.05);
+}
+
+/* Use this same button style for card actions */
+.action-button {
+  background-color: #20a9e9;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 900;
+  font-size: 1.1rem;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+  background-color: rgb(2, 125, 182);
 }
