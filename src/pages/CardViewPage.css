@@ -9,6 +9,11 @@
   z-index: 100;
 }
 
+.dashboard-header {
+  position: relative;
+  z-index: 60; /* Higher than .background-darken-overlay (50) */
+}
+
 /* New wrapper to group the card and action buttons */
 .card-wrapper {
   display: flex;
