@@ -60,6 +60,36 @@ export default function CardViewPage() {
       });
   };
 
+  const upgradeCard = (type) => {
+    fetch(`http://localhost:8080/card/upgrade/${type}/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Upgrade failed');
+        return res.json();
+      })
+      .then(setCard)
+      .catch((err) => alert(err.message));
+  };
+
+  const evolveCard = () => {
+    fetch(`http://localhost:8080/card/evolve/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Evolution failed');
+        return res.json();
+      })
+      .then(setCard)
+      .catch((err) => alert(err.message));
+  };
+
   if (!card) return <div>Loading...</div>;
 
   return (
@@ -96,8 +126,9 @@ export default function CardViewPage() {
           <div className="card-wrapper">
             <Card card={card} size="large" />
             <div className="card-actions">
-              <button className="action-button">Upgrade health</button>
-              <button className="action-button">Upgrade attack</button>
+              <button className="action-button" onClick={() => upgradeCard('health')}>Upgrade health</button>
+              <button className="action-button" onClick={() => upgradeCard('attack')}>Upgrade attack</button>
+              <button className="action-button" onClick={evolveCard}>Evolve</button>
               <button className="action-button" onClick={() => navigate(`/battle/${id}`)}>Battle</button>
               <button className="back-button" onClick={handleDeleteCard}>Delete Card</button>
               <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
