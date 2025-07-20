@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import CardViewPage from './pages/CardViewPage';
+import BattlePage from './pages/BattlePage'; 
 import './App.css';
 
 export default function App() {
@@ -25,6 +26,15 @@ export default function App() {
             }
           />
           <Route path="/cards/:id" element={<CardViewPage />} />
+
+          <Route
+          path="/battle/:id"
+          element={
+            <ProtectedRoute>
+              <BattlePage />
+            </ProtectedRoute>
+          }
+         />
           
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>

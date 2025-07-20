@@ -98,9 +98,9 @@ export default function CardViewPage() {
             <div className="card-actions">
               <button className="action-button">Upgrade health</button>
               <button className="action-button">Upgrade attack</button>
-              <button className="action-button">Battle</button>
-              <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
+              <button className="action-button" onClick={() => navigate(`/battle/${id}`)}>Battle</button>
               <button className="back-button" onClick={handleDeleteCard}>Delete Card</button>
+              <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
             </div>
           </div>
         </div>
