@@ -42,6 +42,24 @@ export default function CardViewPage() {
     setMenuOpen(false);
   };
 
+  const handleDeleteCard = () => {
+    if (!window.confirm('Are you sure you want to delete this card?')) return;
+
+    fetch(`http://localhost:8080/card/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to delete card');
+        navigate('/dashboard');
+      })
+      .catch((err) => {
+        alert('Error deleting card: ' + err.message);
+      });
+  };
+
   if (!card) return <div>Loading...</div>;
 
   return (
@@ -75,14 +93,14 @@ export default function CardViewPage() {
         </div>
 
         <div className="card-view-page">
-          <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
-
           <div className="card-wrapper">
             <Card card={card} size="large" />
             <div className="card-actions">
               <button className="action-button">Upgrade health</button>
               <button className="action-button">Upgrade attack</button>
               <button className="action-button">Battle</button>
+              <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
+              <button className="back-button" onClick={handleDeleteCard}>Delete Card</button>
             </div>
           </div>
         </div>

@@ -11,14 +11,14 @@
 
 .dashboard-header {
   position: relative;
-  z-index: 60; /* Higher than .background-darken-overlay (50) */
+  z-index: 60;
 }
 
-/* New wrapper to group the card and action buttons */
+/* Group card and action buttons */
 .card-wrapper {
   display: flex;
-  align-items: center;
-  gap: 4rem;
+  padding-bottom: 15rem;
+  gap: 6rem;
 }
 
 /* Right-hand button column */
@@ -36,28 +36,9 @@
   pointer-events: none;
 }
 
+/* General action button style */
+.action-button,
 .back-button {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  padding: 1rem 2.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  background-color: #20a9e9;
-  border: none;
-  border-radius: 0.5rem;
-  color: white;
-  cursor: pointer;
-  z-index: 110;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-.back-button:hover {
-  background-color: #0a79b2;
-  transform: scale(1.05);
-}
-
-/* Use this same button style for card actions */
-.action-button {
   background-color: #20a9e9;
   color: white;
   padding: 0.8rem 2rem;
@@ -73,4 +54,13 @@
 .action-button:hover {
   transform: scale(1.05);
   background-color: rgb(2, 125, 182);
+}
+
+.back-button {
+  background-color: #e92020;
+}
+
+.back-button:hover {
+  background-color: #b21717;
+  transform: scale(1.05);
 }
