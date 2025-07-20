@@ -8,21 +8,38 @@ import './DashboardPage.css';
 export default function DashboardPage() {
   const [cards, setCards] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedType, setSelectedType] = useState('ROCK');
   const { logout } = useAuth();
   const navigate = useNavigate();
   const logo = '/assets/Logo.png';
 
+  // Load cards initially
   useEffect(() => {
     fetch('http://localhost:8080/cards', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     })
       .then(res => res.json())
       .then(setCards)
-      .catch(err => {
-        console.error(err);
-        alert('Failed to load cards');
-      });
+      .catch(err => alert('Failed to load cards'));
   }, []);
+
+  // Create a new card
+  const handleCreateCard = () => {
+    fetch('http://localhost:8080/card', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({ type: selectedType }),
+    })
+      .then(res => {
+        if (!res.ok) return res.json().then(e => { throw new Error(e.message || 'Creation failed'); });
+        return res.json();
+      })
+      .then(newCard => setCards(prev => [...prev, newCard]))
+      .catch(err => alert('Failed to create card: ' + err.message));
+  };
 
   const toggleMenu = () => setMenuOpen(open => !open);
   const handleLogout = () => {
@@ -30,8 +47,8 @@ export default function DashboardPage() {
     navigate('/login');
   };
   const goToProfile = () => {
-    navigate('/profile');
     setMenuOpen(false);
+    navigate('/profile');
   };
 
   return (
@@ -44,9 +61,7 @@ export default function DashboardPage() {
           initial={sessionStorage.getItem('dashboardVisited') ? false : { opacity: 0, y: -200 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          onAnimationComplete={() => {
-            sessionStorage.setItem('dashboardVisited', 'true');
-          }}
+          onAnimationComplete={() => sessionStorage.setItem('dashboardVisited', 'true')}
         >
           <div className="dashboard-header">
             <div className="dashboard-left">
@@ -54,7 +69,20 @@ export default function DashboardPage() {
             </div>
 
             <div className="dashboard-right">
-              <button className="action-button">Create card</button>
+              <div className="create-card-section">
+                <select
+                  className="type-select"
+                  value={selectedType}
+                  onChange={e => setSelectedType(e.target.value)}
+                >
+                  <option value="ROCK">Rock</option>
+                  <option value="PAPER">Paper</option>
+                  <option value="SCISSORS">Scissors</option>
+                </select>
+                <button className="action-button" onClick={handleCreateCard}>
+                  Create card
+                </button>
+              </div>
 
               <div className="hamburger-menu">
                 <div className={`hamburger-icon ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
@@ -75,8 +103,13 @@ export default function DashboardPage() {
 
         <div className="main-content">
           <div className="grid-cards">
-            {cards.map((card, index) => (
-              <motion.div key={card.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: index * 0.07 }}>
+            {cards.map((card, idx) => (
+              <motion.div
+                key={card.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: idx * 0.07 }}
+              >
                 <Card card={card} clickable size="small" />
               </motion.div>
             ))}
