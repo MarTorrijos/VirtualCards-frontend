@@ -1,3 +1,16 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+}
+
+.background-darken-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
 .battle-page {
   display: flex;
   min-height: 100vh;
@@ -11,6 +24,7 @@
   justify-content: space-around;
   align-items: flex-start;
   margin-top: 3rem;
+  margin-left: 3rem;
 }
 
 .opponent-card {
@@ -26,18 +40,20 @@
 .log-zone {
   flex: 1;
   margin-left: 3rem;
+  margin-right: 6rem;
   background: #ffffff;
   border-left: 4px solid #20a9e9;
   padding: 1rem;
   margin-top: 3.7rem;
   border-radius: 0.5rem;
   box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-  max-height: 600px;
+  max-height: 650px;
+  max-width: 500px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 2;
 }
 
 .log-lines {
@@ -48,16 +64,18 @@
   gap: 0.5rem;
   font-size: 1.1rem;
 }
-
 .back-button {
   background-color: #ee7d14;
   color: white;
   padding: 0.8rem 2rem;
   border: none;
+  width: 15rem;
   border-radius: 0.5rem;
   font-weight: 900;
   font-size: 1.1rem;
   cursor: pointer;
+  margin: 2rem auto 0 auto;
+  display: block;
 }
 
 .back-button:hover {

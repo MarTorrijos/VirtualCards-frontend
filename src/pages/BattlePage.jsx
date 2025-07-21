@@ -22,7 +22,7 @@ export default function BattlePage() {
       .then(res => res.json())
       .then(data => {
         setPlayerCard(data.updatedCard);
-        setOpponentCard(data.opponentCard); // <-- assuming backend now returns this
+        setOpponentCard(data.opponentCard);
         setLogLines(data.events);
       })
       .catch(err => {
@@ -43,10 +43,8 @@ export default function BattlePage() {
   }, [logLines]);
 
   return (
-    <>
-      <div className="bg-bottom-left" />
-      <div className="bg-bottom-right" />
-
+    <div className="page">
+      <div className="background-darken-overlay" />
       <div className="battle-page">
         <div className="card-zone">
           {playerCard && <Card card={playerCard} size="large" />}
@@ -68,6 +66,6 @@ export default function BattlePage() {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
