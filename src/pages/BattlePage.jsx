@@ -11,6 +11,7 @@ export default function BattlePage() {
   const [opponentCard, setOpponentCard] = useState(null);
   const [logLines, setLogLines] = useState([]);
   const [visibleLogs, setVisibleLogs] = useState([]);
+  const [attacker, setAttacker] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:8080/battle/${id}`, {
@@ -35,20 +36,32 @@ export default function BattlePage() {
     if (!logLines.length) return;
     let index = 0;
     const interval = setInterval(() => {
-      setVisibleLogs(logs => [...logs, logLines[index]]);
+      const line = logLines[index];
+      setVisibleLogs(logs => [...logs, line]);
+
+      if (line.includes('attacks')) {
+        const isPlayer = line.startsWith(playerCard?.name);
+        setAttacker(isPlayer ? 'player' : 'opponent');
+        setTimeout(() => setAttacker(null), 300);
+      }
+
       index++;
       if (index === logLines.length) clearInterval(interval);
     }, 1000);
     return () => clearInterval(interval);
-  }, [logLines]);
+  }, [logLines, playerCard]);
 
   return (
     <div className="page">
       <div className="background-darken-overlay" />
       <div className="battle-page">
         <div className="card-zone">
-          {playerCard && <Card card={playerCard} size="large" />}
-          {opponentCard && <Card card={opponentCard} size="large" />}
+          <div className={`card-container ${attacker === 'player' ? 'attack' : ''}`}>
+            {playerCard && <Card card={playerCard} size="large" />}
+          </div>
+          <div className={`card-container ${attacker === 'opponent' ? 'attack' : ''}`}>
+            {opponentCard && <Card card={opponentCard} size="large" />}
+          </div>
         </div>
 
         <div className="log-zone">
