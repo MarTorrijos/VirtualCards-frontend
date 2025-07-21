@@ -60,7 +60,7 @@ export default function BattlePage() {
             {playerCard && <Card card={playerCard} size="large" />}
           </div>
           <div className={`card-container ${attacker === 'opponent' ? 'attack' : ''}`}>
-            {opponentCard && <Card card={opponentCard} size="large" />}
+            {opponentCard && <Card card={opponentCard} size="large" isOpponent />}
           </div>
         </div>
 

@@ -11,7 +11,7 @@
   padding: 1em;
   border-radius: 1em;
   font-family: 'Nunito', sans-serif;
-  font-size: 1rem; /* base unit for scaling */
+  font-size: 1rem;
 }
 
 .card.clickable {
@@ -65,4 +65,9 @@
 .card.large .card-footer {
   bottom: 8%;
   font-size: 1.4em;
+}
+
+/* Move footer up for opponent cards */
+.card.opponent .card-footer {
+  bottom: 12.3%;
 }

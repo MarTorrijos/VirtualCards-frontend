@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import './Card.css';
 
-export default function Card({ card, clickable = false, size = 'small' }) {
+export default function Card({ card, clickable = false, size = 'small', isOpponent = false }) {
   const navigate = useNavigate();
 
   const getImagePath = () => {
@@ -18,7 +18,7 @@ export default function Card({ card, clickable = false, size = 'small' }) {
 
   return (
     <motion.div
-      className={`card ${clickable ? 'clickable' : ''} ${size}`}
+      className={`card ${clickable ? 'clickable' : ''} ${size} ${isOpponent ? 'opponent' : ''}`}
       whileHover={clickable ? { scale: 1.1 } : {}}
       transition={{ duration: 0 }}
       onClick={handleClick}
