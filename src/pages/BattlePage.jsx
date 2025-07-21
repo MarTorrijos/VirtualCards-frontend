@@ -52,33 +52,38 @@ export default function BattlePage() {
   }, [logLines, playerCard]);
 
   return (
-    <div className="page">
-      <div className="background-darken-overlay" />
-      <div className="battle-page">
-        <div className="card-zone">
-          <div className={`card-container ${attacker === 'player' ? 'attack' : ''}`}>
-            {playerCard && <Card card={playerCard} size="large" />}
-          </div>
-          <div className={`card-container ${attacker === 'opponent' ? 'attack' : ''}`}>
-            {opponentCard && <Card card={opponentCard} size="large" isOpponent />}
-          </div>
-        </div>
-
-        <div className="log-zone">
-          <h2>Battle Log</h2>
-          <div className="log-lines">
-            {visibleLogs.map((line, idx) => (
-              <p key={idx}>{line}</p>
-            ))}
+      <>
+      <div className="bg-bottom-left" />
+      <div className="bg-bottom-right" />
+      
+      <div className="page">
+        <div className="background-darken-overlay" />
+        <div className="battle-page">
+          <div className="card-zone">
+            <div className={`card-container ${attacker === 'player' ? 'attack' : ''}`}>
+              {playerCard && <Card card={playerCard} size="large" />}
+            </div>
+            <div className={`card-container ${attacker === 'opponent' ? 'attack' : ''}`}>
+              {opponentCard && <Card card={opponentCard} size="large" isOpponent />}
+            </div>
           </div>
 
-          {visibleLogs.length === logLines.length && (
-            <button className="back-button" onClick={() => navigate('/dashboard')}>
-              ← Back to Dashboard
-            </button>
-          )}
+          <div className="log-zone">
+            <h2>Battle Log</h2>
+            <div className="log-lines">
+              {visibleLogs.map((line, idx) => (
+                <p key={idx}>{line}</p>
+              ))}
+            </div>
+
+            {visibleLogs.length === logLines.length && (
+              <button className="back-button" onClick={() => navigate('/dashboard')}>
+                ← Back to Dashboard
+              </button>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
