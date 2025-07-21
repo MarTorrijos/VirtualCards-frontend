@@ -24,12 +24,16 @@ export default function Card({ card, clickable = false, size = 'small' }) {
       onClick={handleClick}
       style={{ backgroundImage: `url(${getImagePath()})` }}
     >
-      <div className="card-header">{card.name} </div>
+      <div className="card-header">{card.name}</div>
       <div className="card-footer">
         Stage {card.evolutionStage}<br />
-        HP {card.currentHealth} / {card.maxHealth}<br />
+        {card.currentHealth !== undefined && card.maxHealth !== undefined ? (
+          <>HP {card.currentHealth} / {card.maxHealth}<br /></>
+        ) : card.health !== undefined ? (
+          <>HP {card.health} / {card.health}<br /></>
+        ) : null}
         ATK {card.attack}<br />
-        XP {card.xp}<br />
+        {card.xp !== undefined && <>XP {card.xp}<br /></>}
       </div>
     </motion.div>
   );
