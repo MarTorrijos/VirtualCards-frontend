@@ -8,7 +8,7 @@ export default function BattlePage() {
   const navigate = useNavigate();
 
   const [playerCard, setPlayerCard] = useState(null);
-  const [opponentInfo, setOpponentInfo] = useState(null);
+  const [opponentCard, setOpponentCard] = useState(null);
   const [logLines, setLogLines] = useState([]);
   const [visibleLogs, setVisibleLogs] = useState([]);
 
@@ -22,13 +22,8 @@ export default function BattlePage() {
       .then(res => res.json())
       .then(data => {
         setPlayerCard(data.updatedCard);
+        setOpponentCard(data.opponentCard); // <-- assuming backend now returns this
         setLogLines(data.events);
-
-        // Try to extract opponent info from first log line
-        const match = data.events[0]?.match(/Opponent card generated: (.+) \(Evolution stage (\d+)\)/);
-        if (match) {
-          setOpponentInfo({ name: match[1], evolutionStage: match[2] });
-        }
       })
       .catch(err => {
         alert('Battle failed: ' + err.message);
@@ -43,38 +38,36 @@ export default function BattlePage() {
       setVisibleLogs(logs => [...logs, logLines[index]]);
       index++;
       if (index === logLines.length) clearInterval(interval);
-    }, 1500);
+    }, 1000);
     return () => clearInterval(interval);
   }, [logLines]);
 
   return (
-    <div className="battle-page">
-      <div className="card-zone">
-        {playerCard && <Card card={playerCard} size="large" />}
-        {opponentInfo && (
-          <div className="opponent-card">
-            <h2>Opponent</h2>
-            <p>Name: {opponentInfo.name}</p>
-            <p>Stage: {opponentInfo.evolutionStage}</p>
-            {/* You can decorate this more later */}
-          </div>
-        )}
-      </div>
+    <>
+      <div className="bg-bottom-left" />
+      <div className="bg-bottom-right" />
 
-      <div className="log-zone">
-        <h2>Battle Log</h2>
-        <div className="log-lines">
-          {visibleLogs.map((line, idx) => (
-            <p key={idx}>{line}</p>
-          ))}
+      <div className="battle-page">
+        <div className="card-zone">
+          {playerCard && <Card card={playerCard} size="large" />}
+          {opponentCard && <Card card={opponentCard} size="large" />}
         </div>
 
-        {visibleLogs.length === logLines.length && (
-          <button className="back-button" onClick={() => navigate('/dashboard')}>
-            ← Back to Dashboard
-          </button>
-        )}
+        <div className="log-zone">
+          <h2>Battle Log</h2>
+          <div className="log-lines">
+            {visibleLogs.map((line, idx) => (
+              <p key={idx}>{line}</p>
+            ))}
+          </div>
+
+          {visibleLogs.length === logLines.length && (
+            <button className="back-button" onClick={() => navigate('/dashboard')}>
+              ← Back to Dashboard
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
