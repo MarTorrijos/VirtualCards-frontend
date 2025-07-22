@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import Card from '../../components/Card';
+import { useAuth } from '../context/AuthContext';
+import Card from '../components/Card';
 import './CardViewPage.css';
 
 export default function CardViewPage() {
