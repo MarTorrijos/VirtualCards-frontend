@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Card from '../components/Card';
+import Card from '../../components/Card';
 import './BattlePage.css';
 
 export default function BattlePage() {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
@@ -23,7 +23,12 @@ export default function LoginPage() {
   const handleLogin = async () => {
     try {
       await login(username, password);
-      navigate('/dashboard');
+      const role = localStorage.getItem('role');
+      if (role === 'ADMIN') {
+        navigate('/admin-dashboard');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (error) {
       alert('Login failed. Please try again.');
     }
