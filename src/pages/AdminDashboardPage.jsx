@@ -82,8 +82,6 @@ export default function AdminDashboardPage() {
       </motion.div>
 
       <div className="admin-dashboard">
-        <h2 className="admin-title">Admin Dashboard</h2>
-
         <div className="admin-content">
           <div className="admin-users">
             <h3 className="section-title">Users</h3>
