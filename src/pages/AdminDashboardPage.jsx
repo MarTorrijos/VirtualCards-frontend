@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './AdminDashboardPage.css';
 
 export default function AdminDashboardPage() {
   const [users, setUsers] = useState([]);
   const [cards, setCards] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  const logo = '/assets/Logo.png';
   const token = localStorage.getItem('token');
   const authHeader = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -34,12 +41,45 @@ export default function AdminDashboardPage() {
     setCards(cards.map(c => (c.id === cardId ? res.data : c)));
   };
 
+  const toggleMenu = () => setMenuOpen(open => !open);
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   const userCards = selectedUserId ? cards.filter(c => c.userId === selectedUserId) : [];
 
   return (
     <>
       <div className="bg-bottom-left" />
       <div className="bg-bottom-right" />
+
+      <motion.div
+        initial={false}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="dashboard-header">
+          <div className="dashboard-left">
+            <img src={logo} alt="Virtual Cards Logo" className="dashboard-logo" />
+          </div>
+
+          <div className="dashboard-right">
+            <div className="hamburger-menu">
+              <div className={`hamburger-icon ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                <span />
+                <span />
+                <span />
+              </div>
+              {menuOpen && (
+                <div className="dropdown-menu">
+                  <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       <div className="admin-dashboard">
         <h2 className="admin-title">Admin Dashboard</h2>
