@@ -1,0 +1,53 @@
+.profile-page {
+  font-family: 'Nunito', sans-serif;
+  padding: 2rem 6rem;
+  min-height: 100vh;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #20a9e9;
+}
+
+.profile-logo {
+  height: 80px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.logout-button, .back-button {
+  background-color: #20a9e9;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 3rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.logout-button:hover, .back-button:hover {
+  background-color: #027db6;
+  transform: scale(1.05);
+}
+
+.profile-content {
+  margin-top: 4rem;
+}
+
+.profile-content h1 {
+  font-size: 2.5rem;
+  color: #20a9e9;
+  margin-bottom: 1rem;
+}
+
+.profile-content p {
+  font-size: 1.4rem;
+}

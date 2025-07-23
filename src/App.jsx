@@ -9,6 +9,7 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 import CardViewPage from './pages/CardViewPage';
 import BattlePage from './pages/BattlePage';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProfilePage from './pages/ProfilePage';
 
 import './App.css';
 
@@ -55,6 +56,8 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route path="/profile" element={<ProfilePage />} />
 
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
