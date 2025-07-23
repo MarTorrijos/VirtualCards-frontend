@@ -1,0 +1,32 @@
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+}
+
+.modal-title { font-size: 1.5rem; font-weight: 900; color: #20a9e9; margin-bottom: 1rem; }
+.modal-message { font-size: 1.1rem; color: #333; margin-bottom: 1.5rem; }
+.modal-buttons { display: flex; justify-content: center; gap: 1rem; }
+.modal-input {
+  width: 80%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+}
