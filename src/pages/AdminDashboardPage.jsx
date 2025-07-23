@@ -48,6 +48,7 @@ export default function AdminDashboardPage() {
   };
 
   const userCards = selectedUserId ? cards.filter(c => c.userId === selectedUserId) : [];
+  const selectedUsername = users.find(u => u.id === selectedUserId)?.username;
 
   return (
     <>
@@ -87,7 +88,10 @@ export default function AdminDashboardPage() {
             <h3 className="section-title">Users</h3>
             <div className="item-list">
               {users.map(user => (
-                <div key={user.id} className="admin-card">
+                <div
+                  key={user.id}
+                  className={`admin-card ${selectedUserId === user.id ? 'selected-user' : ''}`}
+                >
                   <span>{user.username}</span>
                   <div className="button-group">
                     <button onClick={() => setSelectedUserId(user.id)} className="btn blue">View Cards</button>
@@ -100,7 +104,7 @@ export default function AdminDashboardPage() {
 
           {selectedUserId && (
             <div className="admin-cards">
-              <h3 className="section-title">Cards (User ID: {selectedUserId})</h3>
+              <h3 className="section-title">Cards of user: {selectedUsername}</h3>
               <div className="item-list">
                 {userCards.map(card => (
                   <div key={card.id} className="admin-card">

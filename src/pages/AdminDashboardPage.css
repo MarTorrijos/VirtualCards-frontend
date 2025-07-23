@@ -1,5 +1,5 @@
 .admin-dashboard {
-  padding: 2rem;
+  padding: 0rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -17,13 +17,26 @@
   max-height: 70vh;
 }
 
+.admin-cards {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  margin-top: 4.4rem;
+  overflow-y: scroll;
+  scrollbar-gutter: stable both-edges;
+}
+
 .section-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
   margin-bottom: 1rem;
 }
 
 .item-list {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -31,12 +44,30 @@
 
 .admin-card {
   padding: 1rem;
-  background-color: #ffffff;
   border-radius: 0.5rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+}
+
+/* White background for user cards */
+.user-card {
+  background-color: #ffffff;
+}
+
+/* Light blue background for monster cards */
+.monster-card {
+  background-color: #daf4ff;
+}
+
+.admin-card > div:first-child {
+  text-align: left;
+  flex-grow: 1;
+}
+
+.selected-user {
+  background-color: #fff2e0;
 }
 
 .button-group {
@@ -45,14 +76,20 @@
 }
 
 .btn {
+  background-color: #20a9e9;
   color: white;
-  padding: 0.5rem 1.3rem;
+  padding: 0.6rem 1.5rem;
   border: none;
   border-radius: 0.5rem;
   font-weight: 900;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
 }
 
 .btn.blue {
