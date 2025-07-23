@@ -43,6 +43,7 @@
 }
 
 .admin-card {
+  background-color: #ffffff; /* 👈 fix: white background for all */
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
@@ -51,12 +52,6 @@
   align-items: flex-start;
 }
 
-/* White background for user cards */
-.user-card {
-  background-color: #ffffff;
-}
-
-/* Light blue background for monster cards */
 .monster-card {
   background-color: #daf4ff;
 }
