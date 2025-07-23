@@ -1,53 +1,67 @@
-.profile-page {
+.profile-container {
+  background: #ffffff;
+  padding: 2.5rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 10px 10px rgb(107, 177, 224);
+  max-width: 600px;
+  margin: 3rem auto;
   font-family: 'Nunito', sans-serif;
-  padding: 2rem 6rem;
-  min-height: 100vh;
 }
 
-.profile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 2rem;
-  border-bottom: 2px solid #20a9e9;
+.profile-title {
+  font-size: 2rem;
+  color: #20a9e9;
+  margin-bottom: 2rem;
+  font-weight: 900;
 }
 
-.profile-logo {
-  height: 80px;
+.profile-section {
+  margin-bottom: 1.5rem;
 }
 
-.profile-actions {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.logout-button, .back-button {
-  background-color: #20a9e9;
-  color: white;
-  padding: 0.7rem 1.5rem;
-  border: none;
-  border-radius: 3rem;
+.profile-label {
+  display: block;
   font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #3b2222;
+}
+
+.profile-username {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.profile-input {
+  width: 100%;
+  max-width: 200px;
+  padding: 0.6rem 1rem;
   font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-action-button {
+  margin-left: 0.75rem;
+}
+
+.delete-button {
+  background-color: #ee7d14;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  width: 15rem;
+  border-radius: 0.5rem;
+  font-weight: 900;
+  font-size: 1.1rem;
   cursor: pointer;
+  margin: 2rem auto 0 auto;
+  display: block;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.logout-button:hover, .back-button:hover {
-  background-color: #027db6;
+.delete-button:hover {
+  background-color: #ee6414;
   transform: scale(1.05);
-}
-
-.profile-content {
-  margin-top: 4rem;
-}
-
-.profile-content h1 {
-  font-size: 2.5rem;
-  color: #20a9e9;
-  margin-bottom: 1rem;
-}
-
-.profile-content p {
-  font-size: 1.4rem;
 }

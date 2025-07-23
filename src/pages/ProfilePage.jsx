@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './DashboardPage.css';
+import './ProfilePage.css'; // ✅ for custom styles below
 
 export default function ProfilePage() {
   const { logout } = useAuth();
@@ -40,7 +41,7 @@ export default function ProfilePage() {
         ...authHeader,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ newUsername: newUsername }), // ✅ corrected here
+      body: JSON.stringify({ newUsername: newUsername }),
     });
     setUsername(newUsername);
     alert('Username updated!');
@@ -94,28 +95,41 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <div className="main-content">
-          <h1 style={{ fontSize: '2.5rem', color: '#20a9e9', fontWeight: '900' }}>Your Profile</h1>
+        <div className="profile-container">
+          <h2 className="profile-title">Your Profile</h2>
 
-          <div style={{ margin: '2rem 0' }}>
-            <p style={{ fontSize: '1.4rem' }}>Current Username: {username}</p>
+          <div className="profile-section">
+            <p className="profile-label">Current username: </p>
+            <p className="profile-username">{username}</p>
           </div>
 
-          <div style={{ marginBottom: '2rem' }}>
-            <label>New Username: </label>
-            <input value={newUsername} onChange={e => setNewUsername(e.target.value)} />
-            <button className="action-button" onClick={handleUsernameChange}>Update Username</button>
+          <div className="profile-section">
+
+            <input
+              className="profile-input"
+              value={newUsername}
+              onChange={e => setNewUsername(e.target.value)}
+            />
+            <button className="action-button profile-action-button" onClick={handleUsernameChange}>
+                Update Username
+            </button>
           </div>
 
-          <div style={{ marginBottom: '2rem' }}>
-            <label>New Password: </label>
-            <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} />
-            <button className="action-button" onClick={handlePasswordChange}>Update Password</button>
+          <div className="profile-section">
+            <input
+              className="profile-input"
+              type="password"
+              value={newPassword}
+              onChange={e => setNewPassword(e.target.value)}
+            />
+            <button className="action-button profile-action-button" onClick={handlePasswordChange}>
+              Update Password
+            </button>
           </div>
-
-          <button className="action-button" style={{ backgroundColor: '#ee7d14' }} onClick={handleDeleteAccount}>
+          
+            <button className="delete-button" onClick={handleDeleteAccount}>
             Delete Account
-          </button>
+            </button>
         </div>
       </div>
     </>
