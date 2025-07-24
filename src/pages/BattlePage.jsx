@@ -78,10 +78,10 @@ export default function BattlePage() {
         <div className="background-darken-overlay" />
         <div className="battle-page">
           <div className="card-zone">
-            <div className={`card-container ${attacker === 'player' ? 'attack' : ''}`}>
+            <div className={`card-container ${attacker === 'player' ? 'attack' : ''} ${attacker === 'opponent' ? 'hit' : ''}`} style={{ position: 'relative' }}>
               {playerCard && <Card card={playerCard} size="large" />}
             </div>
-            <div className={`card-container ${attacker === 'opponent' ? 'attack' : ''}`}>
+            <div className={`card-container ${attacker === 'opponent' ? 'attack' : ''} ${attacker === 'player' ? 'hit' : ''}`} style={{ position: 'relative' }}>
               {opponentCard && <Card card={opponentCard} size="large" isOpponent />}
             </div>
           </div>
