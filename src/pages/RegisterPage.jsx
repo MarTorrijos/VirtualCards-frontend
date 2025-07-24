@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-import './LoginPage.css'; // Reuse login styles
+import Modal from '../components/Modal';
+import './LoginPage.css';   // Reuse login styles
 
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [statusMessage, setStatusMessage] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
   const logo = '/assets/Logo.png';
 
   const handleRegister = async () => {
+    if (!username || !password) {
+      setModalOpen(true);
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:8080/auth/register', {
         method: 'POST',
@@ -51,58 +58,68 @@ export default function RegisterPage() {
 
   return (
     <>
-          <div className="bg-bottom-left" />
+      <div className="bg-bottom-left" />
       <div className="bg-bottom-right" />
       <div className="page">
-      <div className="centered">
-        <div className="login-wrapper">
-          <motion.img
-            src={logo}
-            alt="Virtual Cards Logo"
-            className="login-logo-outside"
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-          />
+        <div className="centered">
+          <div className="login-wrapper">
+            <motion.img
+              src={logo}
+              alt="Virtual Cards Logo"
+              className="login-logo-outside"
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            />
 
-          <motion.div
-            className="login-card"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            {statusMessage && (
-              <div
-                className="status-message"
-                dangerouslySetInnerHTML={{ __html: statusMessage }}
+            <motion.div
+              className="login-card"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {statusMessage && (
+                <div
+                  className="status-message"
+                  dangerouslySetInnerHTML={{ __html: statusMessage }}
+                />
+              )}
+
+              <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="input"
               />
-            )}
-
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="input"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input"
-            />
-            <button onClick={handleRegister} className="button">
-              Register
-            </button>
-            <p className="text">
-              Already have an account? <br />
-              <span className="link" onClick={() => navigate('/login')}>
-                Go back to Login
-              </span>
-            </p>
-          </motion.div>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input"
+              />
+              <button onClick={handleRegister} className="button">
+                Register
+              </button>
+              <p className="text">
+                Already have an account? <br />
+                <span className="link" onClick={() => navigate('/login')}>
+                  Go back to Login
+                </span>
+              </p>
+            </motion.div>
+          </div>
         </div>
       </div>
-      </div>
+
+      {/* ✅ Modal for validation */}
+      <Modal
+        isOpen={modalOpen}
+        title="Missing Information"
+        message="Both username and password are required to register."
+        onConfirm={() => setModalOpen(false)}
+        showCancel={false}   // ✅ Show only Confirm button
+        showInput={false}
+      />
     </>
   );
 }
