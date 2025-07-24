@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
+import { useAuth } from '../context/AuthContext';
 import Modal from '../components/Modal';
 import './LoginPage.css';   // Reuse login styles
 
@@ -11,6 +12,7 @@ export default function RegisterPage() {
   const [statusMessage, setStatusMessage] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
   const logo = '/assets/Logo.png';
 
   const handleRegister = async () => {
@@ -22,30 +24,15 @@ export default function RegisterPage() {
     try {
       const response = await fetch('http://localhost:8080/auth/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
-        setStatusMessage('Registration successful!<br/>Logging you in...');
 
-        const loginResponse = await fetch('http://localhost:8080/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, password }),
-        });
+        await login(username, password);
 
-        if (loginResponse.ok) {
-          const { token } = await loginResponse.json();
-          localStorage.setItem('token', token);
-          setTimeout(() => navigate('/dashboard'), 1500);
-        } else {
-          throw new Error('Registration succeeded but login failed');
-        }
+        navigate('/dashboard');
       } else {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Registration failed');
@@ -117,7 +104,7 @@ export default function RegisterPage() {
         title="Missing Information"
         message="Both username and password are required to register."
         onConfirm={() => setModalOpen(false)}
-        showCancel={false}   // ✅ Show only Confirm button
+        showCancel={false}
         showInput={false}
       />
     </>
