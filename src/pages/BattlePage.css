@@ -54,11 +54,13 @@
   flex: 1;
   margin-left: 3rem;
   margin-right: 6rem;
-  background: #ffffff;
+  background-color: #000;
+  color: #0bffde;
+  font-family: 'Courier New', Courier, monospace;
   padding: 1rem;
   margin-top: 3.7rem;
   border-radius: 0.5rem;
-  box-shadow: 1em 1em 0px rgb(27, 67, 94);
+  box-shadow: 0 0 20px rgba(45, 248, 255, 0.562);
   max-height: 575px;
   max-width: 500px;
   overflow-y: auto;
@@ -78,7 +80,7 @@
 }
 
 .back-button {
-  background-color: #ee7d14;
+  background-color: #20a9e9;
   color: white;
   padding: 0.8rem 2rem;
   border: none;
@@ -92,7 +94,34 @@
 }
 
 .back-button:hover {
+  background-color: rgb(2, 125, 182);
+  transform: scale(1.05);
+}
+
+/* Fix for CardViewPage back/delete buttons */
+.card-actions .back-button {
+  background-color: #ee7d14;
+}
+
+.card-actions .back-button:hover {
   background-color: #ee6414;
+}
+
+.action-button {
+  background-color: #20a9e9;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 900;
+  font-size: 1.1rem;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.action-button:hover {
+  background-color: rgb(2, 125, 182);
   transform: scale(1.05);
 }
 
@@ -146,18 +175,10 @@
   animation: typewriter 0.8s steps(30, end) forwards;
 }
 
-.intro-popup p:nth-child(1) {
-  animation-delay: 0s;
-}
-.intro-popup p:nth-child(2) {
-  animation-delay: 0.8s;
-}
-.intro-popup p:nth-child(3) {
-  animation-delay: 1.6s;
-}
-.intro-popup p:nth-child(4) {
-  animation-delay: 2.4s;
-}
+.intro-popup p:nth-child(1) { animation-delay: 0s; }
+.intro-popup p:nth-child(2) { animation-delay: 0.8s; }
+.intro-popup p:nth-child(3) { animation-delay: 1.6s; }
+.intro-popup p:nth-child(4) { animation-delay: 2.4s; }
 
 .start-button {
   margin-top: 2rem;
