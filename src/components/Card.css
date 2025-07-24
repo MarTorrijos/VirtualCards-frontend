@@ -54,9 +54,19 @@
 }
 
 .card-footer {
+  display: flex;
+  flex-direction: column; /* 👈 force vertical stacking */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.5em;
+  z-index: 2;
+  color: black;
+  text-shadow: 0.1em 0.1em 0.2em white;
   font-weight: 700;
   font-size: 1.2em;
 }
+
 
 .card.small .card-footer {
   bottom: 8%;
@@ -70,4 +80,9 @@
 /* Move footer up for opponent cards */
 .card.opponent .card-footer {
   bottom: 12.3%;
+}
+
+.advantage-bonus {
+  color: #0fb100;
+  font-weight: bold;
 }

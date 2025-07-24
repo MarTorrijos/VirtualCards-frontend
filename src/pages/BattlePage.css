@@ -214,3 +214,18 @@
   pointer-events: none;
   z-index: 1;
 }
+
+.card-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.card-image-wrapper.hit::after {
+  content: "";
+  position: absolute;
+  inset: 9px; /* adds a margin to avoid fully covering the image edges */
+  background-color: rgba(255, 0, 0, 0.3);
+  border-radius: 1rem;
+  pointer-events: none;
+  z-index: 5;
+}

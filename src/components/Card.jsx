@@ -26,14 +26,19 @@ export default function Card({ card, clickable = false, size = 'small', isOppone
     >
       <div className="card-header">{card.name}</div>
       <div className="card-footer">
-        Stage {card.evolutionStage}<br />
+        <div>Stage {card.evolutionStage}</div>
         {card.currentHealth !== undefined && card.maxHealth !== undefined ? (
-          <>HP {card.currentHealth} / {card.maxHealth}<br /></>
+          <div>HP {card.currentHealth} / {card.maxHealth}</div>
         ) : card.health !== undefined ? (
-          <>HP {card.health} / {card.health}<br /></>
+          <div>HP {card.health} / {card.health}</div>
         ) : null}
-        ATK {card.attack}<br />
-        {card.xp !== undefined && <>XP {card.xp}<br /></>}
+        <div>
+          ATT {card.attack}
+          {card.hasAdvantage && card.advantageBonus > 0 && (
+            <span className="advantage-bonus"> + {card.advantageBonus}</span>
+          )}
+        </div>
+        {card.xp !== undefined && <div>XP {card.xp}</div>}
       </div>
     </motion.div>
   );
