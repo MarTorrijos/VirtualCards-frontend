@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../components/Modal';
 import './LoginPage.css';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [firstVisit, setFirstVisit] = useState(false);
+  const [modalConfig, setModalConfig] = useState({ isOpen: false });
   const { login } = useAuth();
   const navigate = useNavigate();
   const logo = '/assets/Logo.png';
@@ -20,7 +22,27 @@ export default function LoginPage() {
     }
   }, []);
 
+  const showModal = (title, message) => {
+    setModalConfig({
+      isOpen: true,
+      title,
+      message,
+      onConfirm: () => setModalConfig({ isOpen: false }),
+      onCancel: () => setModalConfig({ isOpen: false }),
+      showCancel: false
+    });
+  };
+
   const handleLogin = async () => {
+    if (!username || !password) {
+      showModal("Missing Fields", !username && !password
+        ? "Username and password are required"
+        : !username
+        ? "Please enter your username"
+        : "Please enter your password");
+      return;
+    }
+
     try {
       await login(username, password);
       const role = localStorage.getItem('role');
@@ -30,7 +52,7 @@ export default function LoginPage() {
         navigate('/dashboard');
       }
     } catch (error) {
-      alert('Login failed. Please try again.');
+      showModal("Login Failed", "Invalid username or password. Please try again.");
     }
   };
 
@@ -84,6 +106,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+      <Modal {...modalConfig} />
     </>
   );
 }
