@@ -9,9 +9,11 @@ export default function BattlePage() {
 
   const [playerCard, setPlayerCard] = useState(null);
   const [opponentCard, setOpponentCard] = useState(null);
+  const [initialLines, setInitialLines] = useState([]);
   const [logLines, setLogLines] = useState([]);
   const [visibleLogs, setVisibleLogs] = useState([]);
   const [attacker, setAttacker] = useState(null);
+  const [showIntroPopup, setShowIntroPopup] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:8080/battle/${id}`, {
@@ -24,7 +26,19 @@ export default function BattlePage() {
       .then(data => {
         setPlayerCard(data.updatedCard);
         setOpponentCard(data.opponentCard);
-        setLogLines(data.events);
+
+        const [first, second, ...rest] = data.events;
+
+        const match = first.match(/^Opponent card generated: (.+)$/);
+        const cardInfo = match ? match[1] : '';
+        setInitialLines([
+          'Opponent card generated:',
+          cardInfo,
+          'Battle starts!',
+          second.replace('Battle starts!', '').trim(),
+        ]);
+        setLogLines(rest);
+        setShowIntroPopup(true);
       })
       .catch(err => {
         alert('Battle failed: ' + err.message);
@@ -33,7 +47,7 @@ export default function BattlePage() {
   }, [id, navigate]);
 
   useEffect(() => {
-    if (!logLines.length) return;
+    if (!logLines.length || showIntroPopup) return;
     let index = 0;
     const interval = setInterval(() => {
       const line = logLines[index];
@@ -49,14 +63,18 @@ export default function BattlePage() {
       if (index === logLines.length) clearInterval(interval);
     }, 1000);
     return () => clearInterval(interval);
-  }, [logLines, playerCard]);
+  }, [logLines, playerCard, showIntroPopup]);
+
+  const handlePopupConfirm = () => {
+    setShowIntroPopup(false);
+  };
 
   return (
-      <>
-      <div className="bg-bottom-left" />
-      <div className="bg-bottom-right" />
-      
-      <div className="page">
+    <>
+      <div className={`bg-bottom-left ${showIntroPopup ? 'blurred' : ''}`} />
+      <div className={`bg-bottom-right ${showIntroPopup ? 'blurred' : ''}`} />
+
+      <div className={`page ${showIntroPopup ? 'blurred' : ''}`}>
         <div className="background-darken-overlay" />
         <div className="battle-page">
           <div className="card-zone">
@@ -84,6 +102,21 @@ export default function BattlePage() {
           </div>
         </div>
       </div>
+
+      {showIntroPopup && (
+        <div className="intro-popup-overlay">
+          <div className="intro-popup">
+            {initialLines.map((line, idx) =>
+              idx === 2 ? (
+                <p key={idx}><strong>{line}</strong></p>
+              ) : (
+                <p key={idx}>{line}</p>
+              )
+            )}
+            <button className="start-button" onClick={handlePopupConfirm}>Start Battle</button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

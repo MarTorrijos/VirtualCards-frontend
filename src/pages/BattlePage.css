@@ -59,7 +59,7 @@
   margin-top: 3.7rem;
   border-radius: 0.5rem;
   box-shadow: 1em 1em 0px rgb(27, 67, 94);
-  max-height: 650px;
+  max-height: 575px;
   max-width: 500px;
   overflow-y: auto;
   display: flex;
@@ -92,5 +92,56 @@
 
 .back-button:hover {
   background-color: #ee6414;
+  transform: scale(1.05);
+}
+
+.blurred {
+  filter: blur(3px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.intro-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.intro-popup {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.intro-popup p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+.start-button {
+  margin-top: 1.5rem;
+  background-color: #20a9e9;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  background-color: #1d92c5;
   transform: scale(1.05);
 }
