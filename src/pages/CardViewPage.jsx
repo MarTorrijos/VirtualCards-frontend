@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Card from '../components/Card';
+import Modal from '../components/Modal';
 import './CardViewPage.css';
 
 export default function CardViewPage() {
@@ -10,6 +11,7 @@ export default function CardViewPage() {
   const { logout } = useAuth();
   const [card, setCard] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalConfig, setModalConfig] = useState({ isOpen: false });
   const logo = '/assets/Logo.png';
 
   useEffect(() => {
@@ -27,8 +29,7 @@ export default function CardViewPage() {
       .then(setCard)
       .catch((err) => {
         console.error('Failed to load card:', err);
-        alert('Failed to load card: ' + err.message);
-        navigate('/dashboard');
+        openModal('Error', 'Failed to load card: ' + err.message, () => navigate('/dashboard'), false);
       });
   }, [id, navigate]);
 
@@ -42,22 +43,36 @@ export default function CardViewPage() {
     setMenuOpen(false);
   };
 
-  const handleDeleteCard = () => {
-    if (!window.confirm('Are you sure you want to delete this card?')) return;
-
-    fetch(`http://localhost:8080/card/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+  const openModal = (title, message, onConfirm = null, showCancel = true) => {
+    setModalConfig({
+      isOpen: true,
+      title,
+      message,
+      showCancel,
+      onConfirm: () => {
+        setModalConfig({ isOpen: false });
+        if (onConfirm) onConfirm();
       },
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to delete card');
-        navigate('/dashboard');
+      onCancel: () => setModalConfig({ isOpen: false }),
+    });
+  };
+
+  const handleDeleteCard = () => {
+    openModal('Delete Card?', 'Are you sure you want to delete this card?', () => {
+      fetch(`http://localhost:8080/card/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       })
-      .catch((err) => {
-        alert('Error deleting card: ' + err.message);
-      });
+        .then((res) => {
+          if (!res.ok) throw new Error('Failed to delete card');
+          navigate('/dashboard');
+        })
+        .catch((err) => {
+          openModal('Error', 'Error deleting card: ' + err.message, null, false);
+        });
+    });
   };
 
   const upgradeCard = (type) => {
@@ -67,12 +82,15 @@ export default function CardViewPage() {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
-      .then((res) => {
-        if (!res.ok) throw new Error('Upgrade failed');
+      .then(async (res) => {
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.message || 'Upgrade failed');
+        }
         return res.json();
       })
       .then(setCard)
-      .catch((err) => alert(err.message));
+      .catch((err) => openModal('Upgrade Failed', err.message, null, false));
   };
 
   const evolveCard = () => {
@@ -82,12 +100,15 @@ export default function CardViewPage() {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
-      .then((res) => {
-        if (!res.ok) throw new Error('Evolution failed');
+      .then(async (res) => {
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.message || 'Evolution failed');
+        }
         return res.json();
       })
       .then(setCard)
-      .catch((err) => alert(err.message));
+      .catch((err) => openModal('Evolution Failed', err.message, null, false));
   };
 
   if (!card) return <div>Loading...</div>;
@@ -108,9 +129,7 @@ export default function CardViewPage() {
 
             <div className="hamburger-menu">
               <div className={`hamburger-icon ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-                <span />
-                <span />
-                <span />
+                <span /><span /><span />
               </div>
               {menuOpen && (
                 <div className="dropdown-menu">
@@ -137,6 +156,7 @@ export default function CardViewPage() {
         </div>
 
         <div className="background-darken-overlay" />
+        <Modal {...modalConfig} />
       </div>
     </>
   );

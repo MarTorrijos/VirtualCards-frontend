@@ -7,7 +7,8 @@ export default function Modal({
   message,
   onConfirm,
   onCancel,
-  showInput = false
+  showInput = false,
+  showCancel = true
 }) {
   const [localValue, setLocalValue] = useState('');
 
@@ -46,7 +47,7 @@ export default function Modal({
 
         <div className="modal-buttons">
           <button className="btn red" onClick={handleConfirm}>Confirm</button>
-          <button className="btn blue" onClick={onCancel}>Cancel</button>
+          {showCancel && <button className="btn blue" onClick={onCancel}>Cancel</button>}
         </div>
       </div>
     </div>
